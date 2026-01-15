@@ -1,12 +1,15 @@
-name: Android Build (Normal Release)
+name: Android CI
 
 on:
   workflow_dispatch:
   push:
     branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
 
 jobs:
   build:
+    name: Build APK
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +19,7 @@ jobs:
       - name: Setup Java 21
         uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
+          distribution: zulu
           java-version: 21
 
       - name: Setup Gradle
@@ -25,25 +28,8 @@ jobs:
       - name: Build Normal Release APK
         run: ./gradlew :app:assembleNormalRelease --no-daemon
 
-      - name: Upload APK Artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: YinnMusic-Normal-Release
           path: app/build/outputs/apk/normal/release/*.apk
-      - name: Build Normal Release APK (capture log)
-  run: |
-    set -o pipefail
-    ./gradlew :app:assembleNormalRelease --no-daemon --stacktrace --info 2>&1 | tee build.log
-
-- name: Show only AAPT/resource errors
-  if: always()
-  run: |
-    echo "==== FILTERED ERRORS (AAPT/resource/duplicate/not found) ===="
-    grep -nE "AAPT:|Android resource linking failed|Duplicate resources|resource .* not found|error:" build.log | tail -n 200
-
-- name: Upload build log
-  if: always()
-  uses: actions/upload-artifact@v4
-  with:
-    name: build-log
-    path: build.log
