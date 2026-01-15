@@ -1,12 +1,6 @@
 name: Android CI
 
 on:
-  push:
-    branches: [ "**" ]        # jalan di semua branch
-  pull_request:
-    branches: [ "**" ]
-  workflow_dispatch:          # bisa run manual
-on:
   workflow_dispatch:
   push:
     branches: [ dev ]
