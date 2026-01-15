@@ -30,3 +30,20 @@ jobs:
         with:
           name: YinnMusic-Normal-Release
           path: app/build/outputs/apk/normal/release/*.apk
+      - name: Build Normal Release APK (capture log)
+  run: |
+    set -o pipefail
+    ./gradlew :app:assembleNormalRelease --no-daemon --stacktrace --info 2>&1 | tee build.log
+
+- name: Show only AAPT/resource errors
+  if: always()
+  run: |
+    echo "==== FILTERED ERRORS (AAPT/resource/duplicate/not found) ===="
+    grep -nE "AAPT:|Android resource linking failed|Duplicate resources|resource .* not found|error:" build.log | tail -n 200
+
+- name: Upload build log
+  if: always()
+  uses: actions/upload-artifact@v4
+  with:
+    name: build-log
+    path: build.log
