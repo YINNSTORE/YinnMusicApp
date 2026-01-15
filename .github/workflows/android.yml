@@ -6,7 +6,12 @@ on:
   pull_request:
     branches: [ "**" ]
   workflow_dispatch:          # bisa run manual
-
+on:
+  workflow_dispatch:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
 jobs:
   check:
     runs-on: ubuntu-latest
