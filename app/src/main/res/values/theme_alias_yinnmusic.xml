@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Only bridge the missing Base* themes (the ones that caused AAPT not found) -->
+    <!-- Provide missing Base* themes used by styles.xml -->
     <style name="Theme.YinnMusic.Base" parent="Theme.RetroMusic.Base" />
     <style name="Theme.YinnMusic.Base.Light" parent="Theme.RetroMusic.Base.Light" />
     <style name="Theme.YinnMusic.Base.Black" parent="Theme.RetroMusic.Base.Black" />
