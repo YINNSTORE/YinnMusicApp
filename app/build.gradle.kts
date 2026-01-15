@@ -10,7 +10,7 @@ plugins {
 
 android {
     compileSdk = 35
-    namespace = "code.name.monkey.retromusic"
+    namespace = "com.yinnstore.yinnmusic"
 
     defaultConfig {
         minSdk = 24
@@ -21,11 +21,16 @@ android {
         }
 
         applicationId = namespace
-        versionCode = 10660
-        versionName = "6.6.0"
+        versionCode = 501
+        versionName = "5.0.1"
 
-        buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${getProperty(getProperties("../public.properties"), "GOOGLE_PLAY_LICENSE_KEY")}\"")
+        buildConfigField(
+            "String",
+            "GOOGLE_PLAY_LICENSING_KEY",
+            "\"${getProperty(getProperties("../public.properties"), "GOOGLE_PLAY_LICENSE_KEY")}\""
+        )
     }
+
     val signingProperties = getProperties("retro.properties")
     val theSigningConfig = if (signingProperties != null) {
         signingConfigs.create("release") {
@@ -48,27 +53,25 @@ android {
             )
             signingConfig = theSigningConfig
         }
+
         getByName("debug") {
             signingConfig = theSigningConfig
-            applicationIdSuffix = ".debug"
-            versionNameSuffix = " DEBUG"
+            // DEBUG TETAP PAKAI NAMA NORMAL
+            versionNameSuffix = ""
         }
     }
 
     flavorDimensions += "version"
     productFlavors {
-        create("normal") {
-            dimension = "version"
-        }
-        create("fdroid") {
-            dimension = "version"
-        }
+        create("normal") { dimension = "version" }
+        create("fdroid") { dimension = "version" }
     }
 
     buildFeatures {
         viewBinding = true
         buildConfig = true
     }
+
     packaging {
         resources {
             excludes += listOf(
@@ -78,26 +81,38 @@ android {
             )
         }
     }
+
     lint {
         abortOnError = true
-        warning.addAll(listOf("ImpliedQuantity", "Instantiatable", "MissingQuantity", "MissingTranslation", "StringFormatInvalid"))
+        warning.addAll(
+            listOf(
+                "ImpliedQuantity",
+                "Instantiatable",
+                "MissingQuantity",
+                "MissingTranslation",
+                "StringFormatInvalid"
+            )
+        )
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
+
     kotlinOptions {
         jvmTarget = "21"
     }
+
     dependenciesInfo {
         includeInApk = false
         includeInBundle = false
     }
+
     configurations.configureEach {
         resolutionStrategy.force("com.google.code.findbugs:jsr305:1.3.9")
     }
 }
-
 
 dependencies {
     implementation(project(":appthemehelper"))
@@ -112,9 +127,7 @@ dependencies {
     implementation(libs.androidx.palette.ktx)
 
     implementation(libs.androidx.mediarouter)
-    //Cast Dependencies
     "normalImplementation"(libs.google.play.services.cast.framework)
-    //WebServer by NanoHttpd
     "normalImplementation"(libs.nanohttpd)
 
     implementation(libs.androidx.navigation.runtime.ktx)
@@ -135,8 +148,7 @@ dependencies {
     "normalImplementation"(libs.google.play.review)
     "normalImplementation"(libs.google.play.billing)
 
-
-            implementation(libs.android.material)
+    implementation(libs.android.material)
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
@@ -157,14 +169,10 @@ dependencies {
     implementation(libs.glide.okhttp3.integration)
 
     implementation(libs.advrecyclerview)
-
     implementation(libs.fadingedgelayout)
-
     implementation(libs.keyboardvisibilityevent)
     implementation(libs.jetradarmobile.android.snowfall)
-
     implementation(libs.chrisbanes.insetter)
-
 
     implementation(libs.org.eclipse.egit.github.core)
     implementation(libs.jaudiotagger)
