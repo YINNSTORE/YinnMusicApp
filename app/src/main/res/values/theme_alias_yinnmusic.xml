@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--
-      Bridge/alias themes so we don't need to rename the whole theme system.
-      Fixes: resource style/Theme.YinnMusic.Base* not found
-    -->
-
+    <!-- Only bridge the missing Base* themes (the ones that caused AAPT not found) -->
     <style name="Theme.YinnMusic.Base" parent="Theme.RetroMusic.Base" />
     <style name="Theme.YinnMusic.Base.Light" parent="Theme.RetroMusic.Base.Light" />
     <style name="Theme.YinnMusic.Base.Black" parent="Theme.RetroMusic.Base.Black" />
     <style name="Theme.YinnMusic.Base.Adaptive" parent="Theme.RetroMusic.Base.Adaptive" />
-
-    <style name="Theme.YinnMusic" parent="Theme.RetroMusic" />
-    <style name="Theme.YinnMusic.Light" parent="Theme.RetroMusic.Light" />
-    <style name="Theme.YinnMusic.Black" parent="Theme.RetroMusic.Black" />
-    <style name="Theme.YinnMusic.FollowSystem" parent="Theme.RetroMusic.FollowSystem" />
-    <style name="Theme.YinnMusic.MD3" parent="Theme.RetroMusic.MD3" />
-    <style name="Theme.YinnMusic.SplashScreen" parent="Theme.RetroMusic.SplashScreen" />
-    <style name="Theme.YinnMusic.Dialog" parent="Theme.RetroMusic.Dialog" />
 
 </resources>
