@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ===================================================== -->
+    <!-- Legacy style aliases (Retro -> Yinn) to keep layouts OK -->
+    <!-- ===================================================== -->
+
+    <!-- Slider styles used in many layouts -->
+    <style name="Widget.Retro.Slider" parent="Widget.Yinn.Slider" />
+    <style name="Widget.Retro.MD3.Custom.Slider" parent="Widget.Yinn.MD3.Custom.Slider" />
+
+    <!-- Notification text appearance referenced by notification layouts -->
+    <style name="Theme.RetroMusic.Notification" parent="Theme.YinnMusic.Notification" />
+    <style name="Theme.RetroMusic.Notification.Title" parent="Theme.YinnMusic.Notification.Title" />
+
+</resources>
